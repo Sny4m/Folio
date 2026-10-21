@@ -2,7 +2,9 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { clearActivity } from "../utils/recentActivity";
 import { clearAllWorkspaces } from "../utils/workspacePersistence";
+import { usePWAInstall } from "../utils/pwa";
 export default function Settings() {
+  const { canInstall, isInstalled, promptInstall } = usePWAInstall();
   const [autoDownload, setAutoDownload] = useState(
     localStorage.getItem("autoDownload") === "true",
   );
@@ -33,6 +35,27 @@ export default function Settings() {
       <p className="reading-lead">
         A few little things, saved only in this browser.
       </p>
+      {isInstalled ? (
+        <div className="settings-row">
+          <div>
+            <h3>Progressive Web App</h3>
+            <p>Folio is installed and running as a standalone app.</p>
+          </div>
+          <span className="text-xs font-black uppercase tracking-widest text-emerald-500">
+            Installed
+          </span>
+        </div>
+      ) : canInstall ? (
+        <div className="settings-row">
+          <div>
+            <h3>Install Folio App</h3>
+            <p>Add Folio to your desktop or home screen for quick offline access.</p>
+          </div>
+          <button className="button secondary" onClick={promptInstall}>
+            Install App
+          </button>
+        </div>
+      ) : null}
       <div className="settings-row">
         <div>
           <h3>Automatic downloads</h3>
