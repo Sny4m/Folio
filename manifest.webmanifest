@@ -1,0 +1,74 @@
+{
+  "name": "Folio — Private PDF & Image Toolkit",
+  "short_name": "Folio",
+  "description": "Private, local-first PDF and image tools running entirely in your browser. No cloud uploads, no accounts.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "categories": ["productivity", "utilities", "business"],
+  "icons": [
+    {
+      "src": "./icons/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Digitally Sign PDF",
+      "short_name": "Digital Sign",
+      "description": "Cryptographically sign PDF with certificate",
+      "url": "./#/digital-sign",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Verify Digital Signature",
+      "short_name": "Verify",
+      "description": "Verify digital signatures and document integrity",
+      "url": "./#/verify-signature",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Merge PDF",
+      "short_name": "Merge",
+      "description": "Combine multiple PDF files into one",
+      "url": "./#/merge",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Compress PDF",
+      "short_name": "Compress",
+      "description": "Optimize PDF file size",
+      "url": "./#/compress",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
