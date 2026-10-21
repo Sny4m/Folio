@@ -25,13 +25,17 @@ For browser regression checks, build the app and run the preview server on port 
 
 ## Tools
 
-Merge, split/extract pages, compress, rotate, reorder, number pages, watermark, edit metadata, sign, protect, unlock, repair, grayscale, extract text (including English OCR), convert PDF pages to images, extract embedded images, and convert JPG/PNG/WebP images to PDF.
+Merge, split/extract pages, compress, rotate, reorder, number pages, watermark, edit metadata, digitally sign PDF (with X.509 certificate generation, PKCS#12 import/export, and cryptographic seal), verify digital signatures (inspecting certificates, signers, and tampering), visual sign, protect, unlock, repair, grayscale, extract text (including English OCR), convert PDF pages to images, extract embedded images, and convert JPG/PNG/WebP images to PDF.
 
 Only implemented tools are listed. General-purpose image resizing, cropping, and compression are not advertised as available. PDF repair is best-effort, and raster compression can change document fidelity.
 
+## Progressive Web App & Offline Support
+
+Folio is installable as a Progressive Web App (PWA) on desktop and mobile platforms with offline caching enabled via `public/sw.js` and `public/manifest.webmanifest`. Settings provides install prompt controls when opened in a browser.
+
 ## Privacy and storage
 
-Processing runs locally. Recent results (up to 25 MB per result), tool workspaces, and saved signatures may persist in browser storage. Settings provides a clear-local-data action. Downloaded files are not removed by that action. Site assets and processing engines require an initial network load; complete offline availability is not guaranteed.
+Processing runs locally. Recent results (up to 25 MB per result), tool workspaces, digital identities, and saved signatures may persist in browser storage. Settings provides a clear-local-data action. Downloaded files are not removed by that action. Site assets and processing engines are cached for offline reliability.
 
 Existing database names are retained for compatibility with saved upstream workspaces. The project is web-only.
 

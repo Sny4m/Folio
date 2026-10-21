@@ -28,6 +28,8 @@ import {
   Palette,
   X,
   ChevronDown,
+  ShieldCheck,
+  FileCheck,
 } from "lucide-react";
 import { HashRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { Toaster, toast } from "sonner";
@@ -60,6 +62,8 @@ const ExtractImagesTool = lazy(
   () => import("./components/tools/ExtractImagesTool"),
 );
 const GrayscaleTool = lazy(() => import("./components/tools/GrayscaleTool"));
+const DigitalSignTool = lazy(() => import("./components/tools/DigitalSignTool"));
+const VerifySignatureTool = lazy(() => import("./components/tools/VerifySignatureTool"));
 
 const tools: Tool[] = [
   {
@@ -108,6 +112,26 @@ const tools: Tool[] = [
     icon: Unlock,
     implemented: true,
     path: "/unlock",
+    category: "Secure",
+    color: "text-white",
+    bg: "bg-zinc-800",
+  },
+  {
+    title: "Digitally Sign PDF",
+    desc: "Cryptographically seal documents with standard digital certificates.",
+    icon: ShieldCheck,
+    implemented: true,
+    path: "/digital-sign",
+    category: "Secure",
+    color: "text-white",
+    bg: "bg-zinc-800",
+  },
+  {
+    title: "Verify Digital Signature",
+    desc: "Inspect digital certificates, signers, and tampering status.",
+    icon: FileCheck,
+    implemented: true,
+    path: "/verify-signature",
     category: "Secure",
     color: "text-white",
     bg: "bg-zinc-800",
@@ -463,6 +487,8 @@ function AppContent() {
           <Route path="/metadata" element={<MetadataTool />} />
           <Route path="/image-to-pdf" element={<ImageToPdfTool />} />
           <Route path="/signature" element={<SignatureTool />} />
+          <Route path="/digital-sign" element={<DigitalSignTool />} />
+          <Route path="/verify-signature" element={<VerifySignatureTool />} />
           <Route path="/repair" element={<RepairTool />} />
           <Route path="/extract-images" element={<ExtractImagesTool />} />
           <Route path="/grayscale" element={<GrayscaleTool />} />

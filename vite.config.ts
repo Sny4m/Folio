@@ -19,7 +19,8 @@ export default defineConfig({
           'pdf-lib-core': ['pdf-lib'],
           'pdfjs-viewer': ['pdfjs-dist'],
           'vendor-ui': ['react', 'react-dom', 'react-router-dom', 'lucide-react', 'sonner'],
-          'vendor-utils': ['@dnd-kit/core', '@dnd-kit/sortable', '@dnd-kit/utilities']
+          'vendor-utils': ['@dnd-kit/core', '@dnd-kit/sortable', '@dnd-kit/utilities'],
+          'crypto-forge': ['node-forge']
           // NOTE: jszip + tesseract.js intentionally excluded so they
           // load on-demand via dynamic import() (see Split/Compress/
           // PdfToImage/ExtractImages/PdfToText tools). Keeps lite initial small.
