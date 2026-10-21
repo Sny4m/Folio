@@ -6,7 +6,7 @@
 
 **Your files. Your device.**
 
-A browser-based PDF toolkit that keeps your documents on your device.
+A browser-based toolkit for PDFs and images, with more to come.
 
 **[Try it](https://sny4m.github.io/Folio/)** · **[Source code](https://github.com/Sny4m/Folio)**
 
@@ -16,13 +16,15 @@ Made by Sanyam.
 
 ## About
 
-Folio is a collection of PDF tools in one place, without the usual upload-your-file-first step.
+Folio brings PDF and image tools together in one place, without the usual upload-your-file-first step.
 
 I started with [PaperKnife](https://github.com/potatameister/PaperKnife), then redesigned the interface, added tools, and kept building on it. I wanted something that felt good to use without making simple document tasks complicated.
 
-It's still a work in progress. There are more ideas I'd like to add over time, but for now the focus is on making the PDF tools useful and reliable.
+It's still a work in progress. There are more ideas I'd like to add over time, but for now the focus is on making the PDF and image tools useful and reliable.
 
 ## What you can do
+
+### PDF tools
 
 - **Organize:** merge and split PDFs, extract pages, rotate and reorder them.
 - **Make changes:** add watermarks and page numbers, edit metadata, compress, and convert pages to images.
@@ -31,11 +33,15 @@ It's still a work in progress. There are more ideas I'd like to add over time, b
 - **Convert:** turn JPG, PNG, and WebP images into PDFs.
 - **Sign:** add visual signatures, digitally sign PDFs, and inspect existing digital signatures.
 
+### Image tools
+
+Folio also includes image utilities, alongside converting images to PDF and exporting images from PDF documents. I'm continuing to build out this side of the toolkit.
+
 Repair is best-effort, and some compression methods can change how a document looks.
 
 ## Privacy
 
-PDF processing runs locally in your browser using pdf-lib, PDF.js, qpdf WebAssembly, and Tesseract.js. Folio doesn't have a file-upload endpoint or analytics.
+Document processing runs locally in your browser using pdf-lib, PDF.js, qpdf WebAssembly, and Tesseract.js. Folio doesn't have a file-upload endpoint or analytics.
 
 Some recent results, workspaces, saved signatures, and digital identities can be kept in your browser storage. You can clear them from Settings. Files you've already downloaded stay on your device.
 
