@@ -36,7 +36,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_BASE: /PaperKnife/
+          VITE_BASE:  /Folio/
 
       - name: Strip dead bundled qpdf wasm (runtime uses public/qpdf/)
         run: rm -f dist/assets/qpdf-*.wasm
