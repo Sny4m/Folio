@@ -1,68 +1,48 @@
-
-name: Deploy Folio to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
-  workflow_dispatch:
 
 permissions:
-  contents: read
-
-concurrency:
-  group: github-pages
-  cancel-in-progress: true
+  contents: write
 
 jobs:
-  build:
-    name: Build Folio
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
-          cache: npm
+          node-version: 22
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Lint
-        run: npm run lint
+      - name: Vendor OCR engine (v7 files from node_modules + traineddata)
+        run: npm run vendor:ocr
 
-      - name: Build for GitHub Pages
+      - name: Vendor qpdf WASM (Web unlock only)
+        run: |
+          mkdir -p public/qpdf
+          cp node_modules/qpdf-run/src/worker.js public/qpdf/worker.js
+          cp node_modules/qpdf-run/vendor/qpdf/lib/qpdf.js public/qpdf/qpdf.js
+          cp node_modules/qpdf-run/vendor/qpdf/lib/qpdf.wasm public/qpdf/qpdf.wasm
+
+      - name: Build
         run: npm run build
         env:
-          VITE_BASE_PATH: /${{ github.event.repository.name }}/
+          VITE_BASE:  /Folio/
 
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-         with:
-           enablement: true
+      - name: Strip dead bundled qpdf wasm (runtime uses public/qpdf/)
+        run: rm -f dist/assets/qpdf-*.wasm
 
-      - name: Upload site artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          path: dist
-
-  deploy:
-    name: Publish Folio
-    runs-on: ubuntu-latest
-    needs: build
-
-    permissions:
-      pages: write
-      id-token: write
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          folder: dist
+          branch: gh-pages
