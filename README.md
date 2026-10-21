@@ -4,11 +4,11 @@
 
 # Folio
 
-**Your files. Your device.**
+**One toolbox. A lot of possibilities.**
 
-A little toolbox for working with PDFs, built to keep your files where they belong: on your device.
+A growing collection of useful tools for files, media, and everyday digital tasks — right in your browser.
 
-**[Try Folio](https://sny4m.github.io/Folio/)** · **[View source](https://github.com/Sny4m/Folio)**
+**[Open Folio](https://sny4m.github.io/Folio/)** · **[Source code](https://github.com/Sny4m/Folio)**
 
 Made by Sanyam.
 
@@ -18,37 +18,48 @@ Made by Sanyam.
 
 ## What is Folio?
 
-I wanted a simple place to do everyday PDF tasks without sending personal documents to a server. Folio runs in the browser and handles processing locally. No account, no upload queue, no analytics.
+Folio is my take on a toolbox for the little tasks that somehow always need a different website.
 
-The interface is deliberately a bit different: black and white, rounded type, and a playful feel. Underneath that, the aim is to make common document tasks straightforward.
+It started with PDF tools, but the idea is much bigger: one place for working with documents, images, video, JSON, developer utilities, and whatever else is genuinely useful. I want it to feel simple and a little playful rather than like a wall of buttons.
 
-You can install Folio as a progressive web app, too. It caches assets for offline use, although some features may still need an initial download before they'll work without a connection.
+I'm building Folio on top of [PaperKnife](https://github.com/potatameister/PaperKnife). It's not just a visual reskin: I've redesigned the experience **and added tools and functionality of my own**. I'm continuing to expand it beyond its PDF roots.
 
-## What can it do?
+## Tools
 
-**Organize PDFs:** merge files, split and extract pages, rotate, reorder, add page numbers, and edit metadata.
+**Available today — PDF and document tools**
 
-**Edit and prepare:** compress, add watermarks, turn pages grayscale, protect or unlock files, and attempt to repair damaged PDFs. Repair is best-effort, and raster-based compression may change how a document looks.
+- Merge PDFs, split files, extract pages, rotate and reorder pages
+- Compress, add watermarks and page numbers, edit metadata, and convert pages to images
+- Protect, unlock, and attempt to repair PDFs
+- Extract text, including English OCR for scanned documents
+- Extract embedded images and convert JPG, PNG, and WebP images to PDF
+- Add visual signatures, digitally sign documents, and inspect digital signatures
 
-**Sign and verify:** add visual signatures, create cryptographically signed PDFs using digital identities and certificates, and inspect digital signatures for signer and integrity information.
+Some operations have limitations: PDF repair is best-effort, and raster-based compression can affect quality.
 
-**Extract and convert:** copy text from PDFs (with English OCR for scanned pages), export PDF pages as images, extract embedded images, and turn JPG, PNG, or WebP files into PDFs.
+**Where Folio is going**
 
-Folio only shows tools that have been implemented. General-purpose image resizing, cropping, and compression aren't part of the toolkit yet.
+The toolkit is growing into several areas:
 
-## Your files stay local
+- **Images:** image editing, conversion, and everyday image utilities
+- **Video:** practical video and media tools
+- **JSON and data:** formatting, validation, conversion, and related utilities
+- **Developer tools:** small helpers for tasks developers do all the time
+- **More:** useful tools that fit the same straightforward, browser-first approach
 
-PDF and image processing happens in your browser using libraries such as **pdf-lib**, **PDF.js**, **qpdf (WebAssembly)**, and **Tesseract.js**. Folio doesn't provide a file-upload endpoint or use analytics.
+These are directions for expansion, **not a claim that every tool listed is already available**. The app itself is the best place to see what's implemented.
 
-A few things are worth knowing:
+## Built with privacy in mind
 
-- Recent results (up to 25 MB each), tool workspaces, digital identities, and saved signatures can be stored in your browser so you can return to them.
-- You can clear Folio's saved local data from Settings. That won't delete files you've already downloaded.
-- The app and its processing assets need to be loaded at least once. Offline caching helps after that, but complete offline availability isn't guaranteed.
+The existing PDF and image-to-PDF workflows run locally in your browser using **pdf-lib**, **PDF.js**, **qpdf WebAssembly**, and **Tesseract.js**. Those workflows don't need you to upload documents to a server, and Folio doesn't include analytics or a file-upload endpoint.
 
-## Run it yourself
+Some results, workspaces, digital identities, and saved signatures may remain in browser storage. You can clear saved Folio data in Settings without deleting files you've downloaded.
 
-You'll need **Node.js 22+**.
+Folio can also be installed as a progressive web app. Offline caching helps with repeat use, though assets may need to be downloaded on the first visit. As new tools are added, their privacy and offline behavior may differ depending on what they need.
+
+## Run Folio locally
+
+You'll need **Node.js 22 or newer**.
 
 ```bash
 git clone https://github.com/Sny4m/Folio.git
@@ -57,9 +68,7 @@ npm ci
 npm run dev
 ```
 
-The first run prepares local qpdf and OCR assets, including downloading English OCR language data. Later runs reuse the prepared files. Fonts and runtime dependencies are served locally rather than from a runtime CDN.
-
-To check or build the project:
+The development scripts prepare local qpdf and OCR assets. The first run may download English OCR language data; later runs reuse it.
 
 ```bash
 npm run lint
@@ -67,28 +76,26 @@ npm run build
 npm run preview
 ```
 
-For browser tests, build and start the preview server on port 4173, install Chromium once with `npx playwright install chromium`, then run `npm run test:browser` and `npm run test:workflows`. Test fixtures and screenshots go into the ignored `test-results/` directory.
+For browser checks, start the preview server on port 4173, install Chromium with `npx playwright install chromium`, and run `npm run test:browser` or `npm run test:workflows`.
 
-## Built with
+## Under the hood
 
-Folio uses **React**, **TypeScript**, and **Vite**, with hash-based routing so it can run on static hosts like GitHub Pages. PDF and OCR work happens through local browser APIs, workers, and WebAssembly.
+Folio currently uses **React, TypeScript, and Vite**. Its PDF engine combines browser-based libraries, workers, and WebAssembly. The interface uses a monochrome visual style, rounded typography, and hash-based navigation that works on static hosts like GitHub Pages.
 
-If you're looking around the codebase, `src/components/` contains the main interface and shared tool layouts, `src/utils/` contains document processing utilities, and `scripts/vendor-local.mjs` plus `scripts/vendor-tesseract.mjs` prepare the local processing assets.
+It's a work in progress. I'll keep adding tools, refining existing ones, and making the experience easier to use.
 
 ## Credits and license
 
-Folio started as a fork of [PaperKnife](https://github.com/potatameister/PaperKnife) by **potatameister** (© 2026). The Folio branding and interface redesign are by **Sanyam**.
+Folio is based on **[PaperKnife](https://github.com/potatameister/PaperKnife)** by **potatameister** (© 2026). I appreciate the work that made the starting point possible.
 
-This project remains licensed under **[AGPL-3.0-or-later](LICENSE)**. Upstream copyright notices are preserved. If you distribute or host a modified version, make the complete corresponding source available in accordance with the license.
+**Folio's redesign, additional tools, and ongoing development are by Sanyam.** The project retains upstream copyright notices and is licensed under **[AGPL-3.0-or-later](LICENSE)**. If you distribute or host a modified version, you must make its complete corresponding source available as required by that license.
 
-The bundled Fredoka font uses the SIL Open Font License (see `public/fonts/Fredoka-LICENSE.txt`), and PDF.js CMap notices are in `public/cmaps/LICENSE`.
+Bundled Fredoka font notices are in `public/fonts/Fredoka-LICENSE.txt`; PDF.js CMap notices are in `public/cmaps/LICENSE`.
 
 ---
 
 <div align="center">
 
-**Folio** · Your files. Your device.
-
-Made by **Sanyam**.
+**Made by Sanyam.**
 
 </div>
