@@ -39,6 +39,49 @@ Folio also includes image utilities, alongside converting images to PDF and expo
 
 Repair is best-effort, and some compression methods can change how a document looks.
 
+## Why I built this
+
+I kept running into the same problem: I'd need to make one small change to a document, then end up searching for a website that wanted me to upload it first. Sometimes I needed to merge a PDF, sometimes pull out a page, sometimes turn an image into a PDF. None of those jobs should be a hassle.
+
+Folio is my attempt to put those everyday tools somewhere I actually want to use. I started from PaperKnife, but I've since added functionality and reworked the interface to make it feel like my own project. I also wanted to learn by building something useful, not just another demo.
+
+The goal isn't to cram in every converter on the internet. It's to make a focused set of tools that work well, respect your files, and feel consistent.
+
+## Roadmap
+
+This is the direction I'm working toward, **not a release schedule**. Checked items are already present in the app; unchecked items are goals, not shipped features.
+
+### 1. Get the foundations right
+
+- [x] Bring the core PDF tools into one browser-based interface
+- [x] Add local PDF processing and OCR
+- [x] Make Folio installable as a PWA
+- [ ] Improve mobile workflows, keyboard accessibility, and clearer error messages
+- [ ] Add more automated tests for real-world and tricky files
+
+### 2. Make PDF workflows better
+
+- [x] Merge, split, reorder, rotate, and compress PDFs
+- [x] Add signatures, PDF protection, and signature verification
+- [ ] Make it easier to apply several operations to the same file without starting over
+- [ ] Improve handling and feedback for large, encrypted, or damaged documents
+
+### 3. Build out image tools
+
+- [x] Convert JPG, PNG, and WebP images into PDFs
+- [x] Export PDF pages and embedded images
+- [ ] Add dedicated image conversion between common formats
+- [ ] Add image resizing, cropping, and compression with clear quality controls
+- [ ] Support batch image processing without uploading files
+
+### 4. Expand carefully
+
+- [ ] Establish a consistent tool interface and shared processing patterns before adding new categories
+- [ ] Explore a small set of genuinely useful media or developer utilities
+- [ ] Keep privacy, performance, and offline behavior visible as the toolkit grows
+
+I'll update these checkboxes as features actually ship. The priority is making existing tools dependable before widening the scope.
+
 ## Privacy
 
 Document processing runs locally in your browser using pdf-lib, PDF.js, qpdf WebAssembly, and Tesseract.js. Folio doesn't have a file-upload endpoint or analytics.
